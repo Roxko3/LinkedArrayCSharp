@@ -6,52 +6,33 @@ using System.Threading.Tasks;
 
 namespace Beadando202403
 {
-    public class LinkedArray<T>
+    public class LinkedArray
     {
-        private T[][] data;
+        private object[] data;
         public int count { get; private set; } = 0; // mennyi tombot tarolunk
         public int size { get; private set; } // mekkorak a tarolt tombok
 
         public LinkedArray(int size)
         {
             count++;
-            data = new T[count][];
+            data = new object[count];
             this.size = size;
         }
 
-        public T[] GetElement(int index)
+        public object GetElement(int index)
         {
-            if(index < count)
-            {
-                return data[index];
-            }
-            else
-            {
-                Console.WriteLine("Out of bounds");
-                return null;
-            }
+            return data[index];
         }
 
-        public void SetElement(int index, T[] value)
+        public void SetElement(int index, object value)
         {
-            if(index > count)
-            {
-                Console.WriteLine("Too big index");
-                return;
-            }
-            if(value.Length > size)
-            {
-                Console.WriteLine("Too big array");
-                return;
-            }
-
-            data[index] = value;           
+            data[index] = value;         
         }
 
         public void Clear()
         {
             count = 1;
-            data = new T[count][];
+            data = new object[count][];
         }
 
         public void SetZero()
@@ -61,8 +42,14 @@ namespace Beadando202403
 
         public void NewRow()
         {
+            object[] temp = new object[count];
+            for (int i = 0; i < count; i++)
+            {
+                temp[i] = data[i];
+            }
             count++;
-
+            data = new object[count];
+            data = temp;
         }
     }
 }
