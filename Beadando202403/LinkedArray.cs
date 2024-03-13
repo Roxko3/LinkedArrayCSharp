@@ -9,46 +9,52 @@ namespace Beadando202403
     public class LinkedArray
     {
         private object[,] data;
-        public int count { get; private set; } = 0; // mennyi tombot tarolunk
-        public int size { get; private set; } // mekkorak a tarolt tombok
+        public int Count { get; private set; } = 1; // mennyi tombot tarolunk | m
+        public int Size { get; private set; } // mekkorak a tarolt tombok | n
 
         public LinkedArray(int size)
         {
-            count++;
-            this.size = size;
-            data = new object[count,size];
+            this.Size = size;
+            data = new object[Count, size];
         }
 
         public object GetElement(int index)
         {
-            return data[index,size];
+            return data[Count - 1,index];
         }
 
         public void SetElement(int index, object value)
-        {                    
-            data[index,size] = value;         
+        {
+            data[Count - 1,index] = value;         
+        }
+
+        public int TotalSize()
+        {
+            return Count * Size;
         }
 
         public void Clear()
         {
-            count = 1;
-            data = new object[count,size];
+            data = new object[Count, Size];
         }
 
         public void SetZero()
         {
-            size = 0;
+            Size = 0;
         }
 
         public void NewRow()
         {
-            object[,] temp = new object[count,size];
-            for (int i = 0; i < count; i++)
+            object[,] temp = new object[Count, Size];
+            for (int i = 0; i < Count; i++)
             {
-                temp[i,size] = data[i,size];
+                for (int j = 0; j < Size; j++)
+                {
+                    temp[i,j] = data[i,j];
+                }
             }
-            count++;
-            data = new object[count,size];
+            Count++;
+            data = new object[Count, Size];
             data = temp;
         }
     }

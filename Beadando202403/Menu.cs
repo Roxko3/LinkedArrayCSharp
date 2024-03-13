@@ -41,6 +41,7 @@ namespace Beadando202403
                         SetElementLinkedArray();
                         break;
                     case 4:
+                        GetElementLinkedArray();
                         break;
                     case 0:
                         return;
@@ -86,7 +87,7 @@ namespace Beadando202403
             }
             else
             {
-                for (int i = 0; i < linkedArray.count; i++)
+                for (int i = 0; i < linkedArray.Size; i++)
                 {
                     Console.WriteLine(linkedArray.GetElement(i));
                 }
@@ -99,8 +100,21 @@ namespace Beadando202403
         {
             Console.Clear();
             Console.WriteLine("Set an element in the LinkedArray");
-            linkedArray.SetElement(linkedArray.count-1,Console.ReadLine());
-            Console.WriteLine("Successfully Created");
+            Console.WriteLine($"Index? (0-{linkedArray.Size-1})");
+            int.TryParse(Console.ReadLine(),out int index);
+            Console.WriteLine("Value?");
+            linkedArray.SetElement(index,Console.ReadLine());
+            Console.WriteLine("Successfully set");
+            Thread.Sleep(1000);
+        }
+
+        private void GetElementLinkedArray()
+        {
+            Console.Clear();
+            Console.WriteLine("Get an element from the LinkedArray");
+            Console.WriteLine($"Index? (0-{linkedArray.Size - 1})");
+            int.TryParse(Console.ReadLine(),out int index);
+            Console.WriteLine(linkedArray.GetElement(index));
             Thread.Sleep(1000);
         }
     }
