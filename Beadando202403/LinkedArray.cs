@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Drawing;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -56,6 +57,75 @@ namespace Beadando202403
             Count++;
             data = new object[Count, Size];
             data = temp;
+        }
+
+        public void ReSize(int newSize)
+        {            
+            object[,] temp = new object[Count, newSize];
+            for (int i = 0; i < Count; i++)
+            {
+                for (int j = 0; j < Size; j++)
+                {
+                    temp[i, j] = data[i, j];
+                }
+            }
+            this.Size = newSize;
+            data = new object[Count, Size];
+            data = temp;
+        }
+
+        public void PrintData()
+        {
+            for (int i = 0; i < Count; i++)
+            {
+                for (int j = 0; j < Size; j++)
+                {
+                    Console.Write($"{data[i,j]} ");
+                }
+                Console.WriteLine();
+            }
+        }
+
+        public void Populate()
+        {
+            for (int i = 0; i < Count; i++)
+            {
+                for (int j = 0; j < Size; j++)
+                {
+                    data[i, j] = i + j;
+                }
+            }
+        }
+
+        public void NewFirstRow()
+        {
+            object[,] temp = new object[Count+1, Size];
+            for (int i = 0; i < Count; i++)
+            {
+                for (int j = 0; j < Size; j++)
+                {
+                    temp[i+1,j] = data[i,j];
+                }
+            }
+            Count++;
+            data = new object[Count,Size];
+            data = temp;
+        }
+
+        public int NotNull()
+        {
+            int c = 0;
+            for (int i = 0; i < Count; i++)
+            {
+                for (int j = 0; j < Size; j++)
+                {
+                    if (data[i,j] != null)
+                    {
+                        c++;
+                    }
+                }
+            }
+            return c;
         }
     }
 }

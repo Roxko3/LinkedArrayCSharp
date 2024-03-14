@@ -87,10 +87,7 @@ namespace Beadando202403
             }
             else
             {
-                for (int i = 0; i < linkedArray.Size; i++)
-                {
-                    Console.WriteLine(linkedArray.GetElement(i));
-                }
+                linkedArray.PrintData();
             }
             Console.WriteLine("Press Enter to Exit");
             Console.ReadKey();

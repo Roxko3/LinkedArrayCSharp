@@ -5,16 +5,21 @@
         static void Main(string[] args)
         {
             new Menu();
-            /*LinkedArray fos = new LinkedArray(3);
+            /*LinkedArray test = new LinkedArray(3);
 
-            fos.SetElement(0,"asd");
-            fos.SetElement(1,1);
-            fos.SetElement(2,true);
+            test.SetElement(0,"asd");
+            test.SetElement(1,1);
+            test.SetElement(2,true);
 
-            Console.WriteLine(fos.GetElement(0));
-            fos.Clear();
-            fos.SetZero();
-            fos.NewRow();*/
+            Console.WriteLine(test.GetElement(0));
+            //test.Clear();
+            //test.SetZero();
+            //test.NewRow();
+            test.ReSize(5);
+            test.Populate();
+            test.NewFirstRow();
+            Console.WriteLine(test.NotNull());
+            test.PrintData();*/
         }
     }
 }
