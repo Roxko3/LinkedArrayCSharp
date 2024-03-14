@@ -23,6 +23,14 @@ namespace Beadando202403
             Console.WriteLine("2. List elements from LinkedArray");
             Console.WriteLine("3. Set Element in LinkedArray");
             Console.WriteLine("4. Get Element from LinkedArray");
+            Console.WriteLine("5. Get the total size of the LinkedArray");
+            Console.WriteLine("6. Clear the LinkedArray");
+            Console.WriteLine("7. Set the size of the LinkedArray to zero");
+            Console.WriteLine("8. Add new row to the LinkedArray");
+            Console.WriteLine("9. Resize LinkedArray");
+            Console.WriteLine("10. Populate LinkedArray");
+            Console.WriteLine("11. Add first row to LinkedArray");
+            Console.WriteLine("12. Get not null elements of LinkedArray");
             Console.WriteLine("0. Exit");
 
             bool valid = int.TryParse(Console.ReadLine(), out int input);
@@ -42,6 +50,30 @@ namespace Beadando202403
                         break;
                     case 4:
                         GetElementLinkedArray();
+                        break;
+                    case 5:
+                        GetSizeLinkedArray();
+                        break;
+                    case 6:
+                        ClearLinkedArray();
+                        break;
+                    case 7:
+                        SetZeroLinkedArray();
+                        break;
+                    case 8:
+                        AddNewRow();
+                        break;
+                    case 9:
+                        ReSizeLinkedArray();
+                        break;
+                    case 10:
+                        PopulateLinkedArray();
+                        break;
+                    case 11:
+                        AddFirstRow();
+                        break;
+                    case 12:
+                        GetNotNull();
                         break;
                     case 0:
                         return;
@@ -95,24 +127,116 @@ namespace Beadando202403
 
         private void SetElementLinkedArray()
         {
-            Console.Clear();
-            Console.WriteLine("Set an element in the LinkedArray");
-            Console.WriteLine($"Index? (0-{linkedArray.Size-1})");
-            int.TryParse(Console.ReadLine(),out int index);
-            Console.WriteLine("Value?");
-            linkedArray.SetElement(index,Console.ReadLine());
-            Console.WriteLine("Successfully set");
-            Thread.Sleep(1000);
+            try
+            {
+                Console.Clear();
+                Console.WriteLine("Set an element in the LinkedArray");
+                Console.WriteLine($"Index? (0-{linkedArray.Size - 1})");
+                int.TryParse(Console.ReadLine(), out int index);
+                Console.WriteLine("Value?");
+                linkedArray.SetElement(index, Console.ReadLine());
+                Console.WriteLine("Successfully set");
+                Thread.Sleep(1000);
+            } catch (Exception e)
+            {
+                Console.WriteLine(e.Message);
+                Thread.Sleep(1000);
+                SetElementLinkedArray();
+            }
+
         }
 
         private void GetElementLinkedArray()
         {
+            try
+            {
+                Console.Clear();
+                Console.WriteLine("Get an element from the LinkedArray");
+                Console.WriteLine($"Index? (0-{linkedArray.Size - 1})");
+                int.TryParse(Console.ReadLine(), out int index);
+                Console.WriteLine(linkedArray.GetElement(index));
+                Thread.Sleep(1000);
+            } catch (Exception e)
+            {
+                Console.WriteLine(e.Message);
+                Thread.Sleep(1000);
+                GetElementLinkedArray();
+            }
+
+        }
+
+        private void GetSizeLinkedArray()
+        {
             Console.Clear();
-            Console.WriteLine("Get an element from the LinkedArray");
-            Console.WriteLine($"Index? (0-{linkedArray.Size - 1})");
-            int.TryParse(Console.ReadLine(),out int index);
-            Console.WriteLine(linkedArray.GetElement(index));
+            Console.WriteLine($"The total size of the LinkedArray is {linkedArray.TotalSize()}");
+            Console.WriteLine("Press Enter to Exit");
+            Console.ReadKey();
+        }
+
+        private void ClearLinkedArray()
+        {
+            Console.Clear();
+            linkedArray.Clear();
+            Console.WriteLine("LinkedArray successfully cleared");
+            Thread.Sleep(1000); ;
+        }
+
+        private void SetZeroLinkedArray()
+        {
+            Console.Clear();
+            linkedArray.SetZero();
+            Console.WriteLine("LinkedArray's size is set to zero");
             Thread.Sleep(1000);
+        }
+
+        private void AddNewRow()
+        {
+            Console.Clear();
+            linkedArray.NewRow();
+            Console.WriteLine("New row added to LinkedArray");
+            Thread.Sleep(1000);
+        }
+
+        private void ReSizeLinkedArray()
+        {
+            try
+            {
+                Console.Clear();
+                Console.WriteLine("New size of the LinkedArray?");
+                int.TryParse(Console.ReadLine(), out int size);
+                linkedArray.ReSize(size);
+                Console.WriteLine("LinkedaArray successfully resized");
+                Thread.Sleep(1000);
+            } catch (Exception e)
+            {
+                Console.WriteLine(e.Message);
+                Thread.Sleep(1000);
+                ReSizeLinkedArray();
+            }            
+        }
+        
+        private void PopulateLinkedArray()
+        {
+            Console.Clear();
+            linkedArray.Populate();
+            Console.WriteLine("Successfully populated the LinkedArray");
+            Thread.Sleep(1000);
+        }
+
+        private void AddFirstRow()
+        {
+            Console.Clear();
+            linkedArray.NewFirstRow();
+            Console.WriteLine("Successfully added new first row");
+            Thread.Sleep(1000);
+        }
+
+        private void GetNotNull()
+        {
+            Console.Clear();
+            Console.WriteLine($"Number of not null elements {linkedArray.NotNull()}");
+            Console.WriteLine("Press Enter to Exit");
+            Console.ReadKey();
         }
     }
 }
