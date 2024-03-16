@@ -26,7 +26,7 @@ namespace Beadando202403
 
         public void SetElement(int index, object value)
         {
-            data[Count - 1,index] = value;         
+            data[Count - 1, index] = value;         
         }
 
         public int TotalSize()
@@ -61,6 +61,10 @@ namespace Beadando202403
 
         public void ReSize(int newSize)
         {            
+            if(newSize < Size)
+            {
+                throw new Exception("New size can't be smaller");
+            }
             object[,] temp = new object[Count, newSize];
             for (int i = 0; i < Count; i++)
             {
@@ -92,7 +96,7 @@ namespace Beadando202403
             {
                 for (int j = 0; j < Size; j++)
                 {
-                    data[i, j] = i + j;
+                    data[i, j] = "Data "+(i+j);
                 }
             }
         }

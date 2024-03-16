@@ -155,7 +155,8 @@ namespace Beadando202403
                 Console.WriteLine($"Index? (0-{linkedArray.Size - 1})");
                 int.TryParse(Console.ReadLine(), out int index);
                 Console.WriteLine(linkedArray.GetElement(index));
-                Thread.Sleep(1000);
+                Console.WriteLine("Press Enter to Exit");
+                Console.ReadKey();
             } catch (Exception e)
             {
                 Console.WriteLine(e.Message);
