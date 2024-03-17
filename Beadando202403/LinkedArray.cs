@@ -7,16 +7,23 @@ using System.Threading.Tasks;
 
 namespace Beadando202403
 {
+    class InvalidSizeException : Exception { public InvalidSizeException(string message): base(message) { } }
+
     public class LinkedArray
     {
         private object[,] data;
         public int Count { get; private set; } = 1; // mennyi tombot tarolunk | m
-        public int Size { get; private set; } // mekkorak a tarolt tombok | n
+        public int Size { get; private set; } = 0; // mekkorak a tarolt tombok | n
 
         public LinkedArray(int size)
         {
             this.Size = size;
             data = new object[Count, size];
+        }
+
+        public LinkedArray()
+        {
+            data = new object[Count, Size];
         }
 
         public object GetElement(int index)
@@ -63,7 +70,7 @@ namespace Beadando202403
         {            
             if(newSize < Size)
             {
-                throw new Exception("New size can't be smaller");
+                throw new InvalidSizeException("New size can't be smaller");
             }
             object[,] temp = new object[Count, newSize];
             for (int i = 0; i < Count; i++)
