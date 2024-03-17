@@ -46,15 +46,15 @@ namespace Beadando202403
 
         public void NewRow()
         {
+            Count++;
             object[,] temp = new object[Count, Size];
-            for (int i = 0; i < Count; i++)
+            for (int i = 0; i < Count-1; i++)
             {
                 for (int j = 0; j < Size; j++)
                 {
                     temp[i,j] = data[i,j];
                 }
-            }
-            Count++;
+            }        
             data = new object[Count, Size];
             data = temp;
         }
@@ -78,16 +78,9 @@ namespace Beadando202403
             data = temp;
         }
 
-        public void PrintData()
+        public object[,] GetData()
         {
-            for (int i = 0; i < Count; i++)
-            {
-                for (int j = 0; j < Size; j++)
-                {
-                    Console.Write($"{data[i,j]} ");
-                }
-                Console.WriteLine();
-            }
+            return data;
         }
 
         public void Populate()

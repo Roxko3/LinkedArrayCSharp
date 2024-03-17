@@ -95,7 +95,7 @@ namespace Beadando202403
                 bool valid = int.TryParse(Console.ReadLine(), out int input);
                 if (!valid)
                 {
-                    throw new Exception("Wrong input");
+                    throw new Exception("Wrong input!");
                 }
                 linkedArray = new LinkedArray(input);
                 Console.WriteLine("Successfully Created");
@@ -119,7 +119,15 @@ namespace Beadando202403
             }
             else
             {
-                linkedArray.PrintData();
+                object[,] data = linkedArray.GetData();
+                for (int i = 0; i < linkedArray.Count; i++)
+                {
+                    for (int j = 0; j < linkedArray.Size; j++)
+                    {
+                        Console.Write($"{data[i,j]} ");
+                    }
+                    Console.WriteLine();
+                }
             }
             Console.WriteLine("Press Enter to Exit");
             Console.ReadKey();
@@ -132,7 +140,11 @@ namespace Beadando202403
                 Console.Clear();
                 Console.WriteLine("Set an element in the LinkedArray");
                 Console.WriteLine($"Index? (0-{linkedArray.Size - 1})");
-                int.TryParse(Console.ReadLine(), out int index);
+                bool valid = int.TryParse(Console.ReadLine(), out int index);
+                if (!valid)
+                {
+                    throw new Exception("Wrong input!");
+                }
                 Console.WriteLine("Value?");
                 linkedArray.SetElement(index, Console.ReadLine());
                 Console.WriteLine("Successfully set");
@@ -153,7 +165,11 @@ namespace Beadando202403
                 Console.Clear();
                 Console.WriteLine("Get an element from the LinkedArray");
                 Console.WriteLine($"Index? (0-{linkedArray.Size - 1})");
-                int.TryParse(Console.ReadLine(), out int index);
+                bool valid = int.TryParse(Console.ReadLine(), out int index);
+                if (!valid)
+                {
+                    throw new Exception("Wrong input!");
+                }
                 Console.WriteLine(linkedArray.GetElement(index));
                 Console.WriteLine("Press Enter to Exit");
                 Console.ReadKey();
@@ -169,7 +185,13 @@ namespace Beadando202403
         private void GetSizeLinkedArray()
         {
             Console.Clear();
-            Console.WriteLine($"The total size of the LinkedArray is {linkedArray.TotalSize()}");
+            if(linkedArray == null)
+            {
+                Console.WriteLine("You don't have a LinkedArray");
+            }else
+            {
+                Console.WriteLine($"The total size of the LinkedArray is {linkedArray.TotalSize()}");
+            }
             Console.WriteLine("Press Enter to Exit");
             Console.ReadKey();
         }
@@ -177,24 +199,45 @@ namespace Beadando202403
         private void ClearLinkedArray()
         {
             Console.Clear();
-            linkedArray.Clear();
-            Console.WriteLine("LinkedArray successfully cleared");
+            if(linkedArray == null)
+            {
+                Console.WriteLine("You don't have a LinkedArray");
+            }
+            else
+            {
+                linkedArray.Clear();
+                Console.WriteLine("LinkedArray successfully cleared");
+            }          
             Thread.Sleep(1000); ;
         }
 
         private void SetZeroLinkedArray()
         {
             Console.Clear();
-            linkedArray.SetZero();
-            Console.WriteLine("LinkedArray's size is set to zero");
+            if(linkedArray == null)
+            {
+                Console.WriteLine("You don't have a LinkedArray");
+            }
+            else
+            {
+                linkedArray.SetZero();
+                Console.WriteLine("LinkedArray's size is set to zero");
+            }
             Thread.Sleep(1000);
         }
 
         private void AddNewRow()
         {
             Console.Clear();
-            linkedArray.NewRow();
-            Console.WriteLine("New row added to LinkedArray");
+            if(linkedArray == null)
+            {
+                Console.WriteLine("You don't have a LinkedArray");
+            }
+            else
+            {
+                linkedArray.NewRow();
+                Console.WriteLine("New row added to LinkedArray");
+            }
             Thread.Sleep(1000);
         }
 
@@ -204,7 +247,11 @@ namespace Beadando202403
             {
                 Console.Clear();
                 Console.WriteLine("New size of the LinkedArray?");
-                int.TryParse(Console.ReadLine(), out int size);
+                bool valid = int.TryParse(Console.ReadLine(), out int size);
+                if (!valid)
+                {
+                    throw new Exception("Wrong input!");
+                }
                 linkedArray.ReSize(size);
                 Console.WriteLine("LinkedaArray successfully resized");
                 Thread.Sleep(1000);
@@ -219,23 +266,43 @@ namespace Beadando202403
         private void PopulateLinkedArray()
         {
             Console.Clear();
-            linkedArray.Populate();
-            Console.WriteLine("Successfully populated the LinkedArray");
+            if(linkedArray == null)
+            {
+                Console.WriteLine("You don't have a LinkedArray");
+            }else
+            {
+                linkedArray.Populate();
+                Console.WriteLine("Successfully populated the LinkedArray");
+            }
             Thread.Sleep(1000);
         }
 
         private void AddFirstRow()
         {
             Console.Clear();
-            linkedArray.NewFirstRow();
-            Console.WriteLine("Successfully added new first row");
+            if (linkedArray == null)
+            {
+                Console.WriteLine("You don't have a LinkedArray");
+            }
+            else
+            {
+                linkedArray.NewFirstRow();
+                Console.WriteLine("Successfully added new first row");
+            }
             Thread.Sleep(1000);
         }
 
         private void GetNotNull()
         {
             Console.Clear();
-            Console.WriteLine($"Number of not null elements {linkedArray.NotNull()}");
+            if (linkedArray == null)
+            {
+                Console.WriteLine("You don't have a LinkedArray");
+            }
+            else
+            {
+                Console.WriteLine($"Number of not null elements {linkedArray.NotNull()}");
+            }
             Console.WriteLine("Press Enter to Exit");
             Console.ReadKey();
         }
