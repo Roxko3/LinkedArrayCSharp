@@ -119,15 +119,7 @@ namespace Beadando202403
             }
             else
             {
-                object[,] data = linkedArray.GetData();
-                for (int i = 0; i < linkedArray.Count; i++)
-                {
-                    for (int j = 0; j < linkedArray.Size; j++)
-                    {
-                        Console.Write($"{data[i,j]} ");
-                    }
-                    Console.WriteLine();
-                }
+                linkedArray.Print();
             }
             Console.WriteLine("Press Enter to Exit");
             Console.ReadKey();

@@ -68,7 +68,7 @@ namespace Beadando202403
 
         public void ReSize(int newSize)
         {            
-            if(newSize < Size)
+            if(newSize < Size && NotNull() == 0)
             {
                 throw new InvalidSizeException("New size can't be smaller");
             }
@@ -83,6 +83,18 @@ namespace Beadando202403
             this.Size = newSize;
             data = new object[Count, Size];
             data = temp;
+        }
+
+        public void Print()
+        {
+            for (int i = 0; i < Count; i++)
+            {
+                for (int j = 0; j < Size; j++)
+                {
+                    Console.WriteLine($"{data[i,j]} ");
+                }
+                Console.WriteLine();
+            }
         }
 
         public object[,] GetData()
