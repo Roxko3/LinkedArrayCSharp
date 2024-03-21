@@ -7,7 +7,7 @@ using System.Threading.Tasks;
 
 namespace Beadando202403
 {
-    class InvalidSizeException : Exception { public InvalidSizeException(string message): base(message) { } }
+    public class InvalidSizeException : Exception { public InvalidSizeException(string message): base(message) { } }
 
     public class LinkedArray
     {
@@ -17,6 +17,10 @@ namespace Beadando202403
 
         public LinkedArray(int size)
         {
+            if(size < 1)
+            {
+                throw new InvalidSizeException("Size can't be smaller than 1");
+            }
             this.Size = size;
             data = new object[Count, size];
         }
@@ -68,21 +72,29 @@ namespace Beadando202403
 
         public void ReSize(int newSize)
         {            
-            if(newSize < Size && NotNull() == 0)
+            if(newSize < Size && NotNull() != 0)
             {
-                throw new InvalidSizeException("New size can't be smaller");
+                throw new InvalidSizeException("New size can't be smaller than old");
             }
-            object[,] temp = new object[Count, newSize];
-            for (int i = 0; i < Count; i++)
+            if(NotNull() == 0)
             {
-                for (int j = 0; j < Size; j++)
+                this.Size = newSize;
+                data = new object[Count, Size];
+            } 
+            else
+            {
+                object[,] temp = new object[Count, newSize];
+                for (int i = 0; i < Count; i++)
                 {
-                    temp[i, j] = data[i, j];
+                    for (int j = 0; j < Size; j++)
+                    {
+                        temp[i, j] = data[i, j];
+                    }
                 }
+                this.Size = newSize;
+                data = new object[Count, Size];
+                data = temp;
             }
-            this.Size = newSize;
-            data = new object[Count, Size];
-            data = temp;
         }
 
         public void Print()
@@ -91,7 +103,7 @@ namespace Beadando202403
             {
                 for (int j = 0; j < Size; j++)
                 {
-                    Console.WriteLine($"{data[i,j]} ");
+                    Console.Write($"{data[i,j]} ");
                 }
                 Console.WriteLine();
             }

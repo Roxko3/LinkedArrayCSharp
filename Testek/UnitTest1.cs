@@ -6,6 +6,20 @@ namespace Testek
     public class UnitTest1
     {
         [TestMethod]
+        public void TestEmptyConstructor()
+        {
+            LinkedArray la = new LinkedArray();
+
+            Assert.IsNotNull(la);
+        }
+
+        [TestMethod]
+        public void TestCreate()
+        {
+            Assert.ThrowsException<InvalidSizeException>(()=> new LinkedArray(-1));
+        }
+
+        [TestMethod]
         public void TestSize()
         {
             LinkedArray la = new LinkedArray(3);
@@ -80,6 +94,12 @@ namespace Testek
             Assert.AreEqual(true,la.GetElement(2));
             Assert.AreEqual(null,la.GetElement(3));
             Assert.AreEqual(null,la.GetElement(4));
+            Assert.ThrowsException<InvalidSizeException>(() => la.ReSize(3));
+            la.Clear();
+            la.ReSize(3);
+            Assert.AreEqual(null,la.GetElement(0));
+            Assert.AreEqual(null,la.GetElement(1));
+            Assert.AreEqual(null,la.GetElement(2));
         }
 
         [TestMethod]
